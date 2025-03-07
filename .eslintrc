@@ -1,6 +1,6 @@
 {
   "env": {
-    "browser": true,
+    "browser": true
   },
   "root": true,
   "parser": "@typescript-eslint/parser",
@@ -15,7 +15,7 @@
     "plugin:react-hooks/recommended",
     "plugin:storybook/recommended",
     "plugin:import/recommended",
-    "plugin:import/typescript",
+    "plugin:import/typescript"
   ],
   "plugins": ["@typescript-eslint", "import", "only-warn", "prettier", "react", "react-hooks"],
   "rules": {
@@ -27,23 +27,23 @@
           {
             "pattern": "react",
             "group": "builtin",
-            "position": "before",
-          },
+            "position": "before"
+          }
         ],
         "pathGroupsExcludedImportTypes": ["react"],
         "newlines-between": "always",
         "alphabetize": {
           "order": "asc",
-          "caseInsensitive": true,
-        },
-      },
+          "caseInsensitive": true
+        }
+      }
     ],
     "no-shadow": "off",
     "@typescript-eslint/consistent-type-imports": [
       "error",
       {
-        "fixStyle": "inline-type-imports",
-      },
+        "fixStyle": "inline-type-imports"
+      }
     ],
     "@typescript-eslint/no-shadow": "error",
     "@typescript-eslint/no-use-before-define": "error",
@@ -56,20 +56,20 @@
         "types": {
           "LegacyFilterSpecification": {
             "message": "Use ExpressionFilterSpecification instead",
-            "fixWith": "ExpressionFilterSpecification",
+            "fixWith": "ExpressionFilterSpecification"
           },
           "FC": "Useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
           "React.FC": "Useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
           "React.FunctionComponent": "Useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
           "React.FunctionalComponent": "Preact specific, useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177"
-          },
-        },
+          }
+        }
     ],
     "@typescript-eslint/no-unused-vars": [
       "warn",
       {
-        "argsIgnorePattern": "^_",
-      },
+        "argsIgnorePattern": "^_"
+      }
     ],
     "camelcase": 0,
     "no-nonoctal-decimal-escape": 0,
@@ -87,8 +87,8 @@
         "js": "never",
         "jsx": "never",
         "ts": "never",
-        "tsx": "never",
-      },
+        "tsx": "never"
+      }
     ],
     "import/no-extraneous-dependencies": [
       "error",
@@ -101,21 +101,26 @@
       2,
       {
         "commonjs": true,
-        "amd": true,
-      },
+        "amd": true
+      }
     ],
     "jsx-a11y/click-events-have-key-events": "off",
-    "linebreak-style": ["error", "unix"],
+    "linebreak-style": ["error", "windows"],
     "no-console": [
       "error",
       {
-        "allow": ["info", "debug", "warn", "error"],
-      },
+        "allow": ["info", "debug", "warn", "error"]
+      }
     ],
     "no-named-as-default": "off",
     "no-param-reassign": 0,
     "no-use-before-define": "off",
-    "prettier/prettier": ["warn"],
+    "prettier/prettier": [
+      "warn",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "react/forbid-prop-types": "off",
     "react/jsx-filename-extension": "off",
     "react/jsx-no-useless-fragment": "error",
@@ -123,12 +128,12 @@
     "react/prefer-stateless-function": "off",
     "react/static-property-placement": 0,
     // disable vitest/prefer-to-be because it does not authorize toEqual for the floats
-    "vitest/prefer-to-be": "off",
+    "vitest/prefer-to-be": "off"
   },
   "settings": {
     "react": {
-      "version": "detect",
-    },
+      "version": "detect"
+    }
   },
   "overrides": [
     {

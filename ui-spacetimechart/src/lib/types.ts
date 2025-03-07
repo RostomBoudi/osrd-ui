@@ -111,7 +111,7 @@ export type PickingElement =
 export type HoveredItem = { layer: PickingLayerType; element: PickingElement };
 
 export type DrawingFunction = (
-  canvasContext: CanvasRenderingContext2D,
+    canvasContext: CanvasRenderingContext2D,
   stcContext: SpaceTimeChartContextType
 ) => void;
 

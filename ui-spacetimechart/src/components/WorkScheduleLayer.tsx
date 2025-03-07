@@ -1,10 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import { PatternRect } from './PatternRect';
-import { type WorkSchedule } from '../types';
+import { getParallelogramKeyUtils, ParallelogramReact, PatternRect } from "./PatternRect";
+import {
+  isValidWsParallelogram,
+  isValidWsSquare,
+  ParallelogramPosition,
+  type WorkSchedule,
+  type WsGeometry
+} from "../types";
 
 type WorkScheduleLayerProps = {
-  workSchedules: WorkSchedule[];
+  workSchedules: WorkSchedule<WsGeometry>[];
   imageUrl: string;
 };
 
@@ -30,16 +36,32 @@ export const WorkScheduleLayer = ({ workSchedules, imageUrl }: WorkScheduleLayer
     return null;
   }
 
-  return workSchedules.flatMap((ws) =>
-    ws.spaceRanges.map(([spaceStart, spaceEnd]) => (
-      <PatternRect
-        key={`${ws.type}-${ws.timeStart}-${ws.timeEnd}-${spaceStart}-${spaceEnd}`}
-        timeStart={ws.timeStart}
-        timeEnd={ws.timeEnd}
-        spaceStart={spaceStart}
-        spaceEnd={spaceEnd}
-        imageElement={imageElement}
-      />
-    ))
-  );
+  return workSchedules.flatMap((ws: WorkSchedule<WsGeometry>) => {
+    if (isValidWsSquare(ws)) {
+      return ws.spaceRanges.map(([spaceStart, spaceEnd]) => (
+        <PatternRect
+          key={`${ws.type}-${ws.timeStart}-${ws.timeEnd}-${spaceStart}-${spaceEnd}`}
+          timeStart={ws.timeStart}
+          timeEnd={ws.timeEnd}
+          spaceStart={spaceStart}
+          spaceEnd={spaceEnd}
+          imageElement={imageElement}
+        />
+      ));
+    } else if (isValidWsParallelogram(ws)) {
+      const key: string = getParallelogramKeyUtils(ws);
+      return (
+        <ParallelogramReact
+          key={key}
+          position1={ws.spaceTimePoints[0]}
+          position2={ws.spaceTimePoints[1]}
+          position3={ws.spaceTimePoints[2]}
+          position4={ws.spaceTimePoints[3]}
+          imageElement={imageElement}
+        />
+      );
+    } else {
+      console.error("WorkScheduleLayer Error: Invalid workSchedules");
+    }
+  });
 };

@@ -10,17 +10,29 @@ import { PathLayer } from '../components/PathLayer';
 import { SpaceTimeChart } from '../components/SpaceTimeChart';
 import { WorkScheduleLayer } from '../components/WorkScheduleLayer';
 import { type Point, type PathData, type OperationalPoint } from '../lib/types';
-import { type WorkSchedule } from '../types';
+import { type WorkSchedule, WsGeometry } from "../types";
 import { getDiff } from '../utils/vectors';
 
-const SAMPLE_WORK_SCHEDULES: WorkSchedule[] = [
+const SAMPLE_WORK_SCHEDULES: WorkSchedule<WsGeometry>[] = [
   {
     type: 'TRACK',
-    timeStart: new Date('2024-04-02T00:00:00Z'),
-    timeEnd: new Date('2024-04-02T00:15:00Z'),
-    spaceRanges: [
-      [20000, 35000],
-      [45000, 60000],
+    spaceTimePoints: [
+      {
+        xPositionTime: new Date('2024-04-02T01:30:00Z'),
+        yPositionSpace: 1600,
+      },
+      {
+        xPositionTime: new Date('2024-04-02T02:30:00Z'),
+        yPositionSpace: 1600,
+      },
+      {
+        xPositionTime: new Date('2024-04-02T02:05:00Z'),
+        yPositionSpace: 45000,
+      },
+      {
+        xPositionTime: new Date('2024-04-02T01:05:00Z'),
+        yPositionSpace: 45000,
+      },
     ],
   },
   {
@@ -45,7 +57,7 @@ const DEFAULT_HEIGHT = 550;
 type WorkSchedulesWrapperProps = {
   operationalPoints: OperationalPoint[];
   paths: (PathData & { color: string })[];
-  workSchedules: WorkSchedule[];
+  workSchedules: WorkSchedule<WsGeometry>[];
 };
 
 const WorkSchedulesWrapper = ({
